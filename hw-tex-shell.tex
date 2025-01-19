@@ -1,0 +1,130 @@
+\documentclass{article}
+
+% packages
+\usepackage{stix2}
+\usepackage{geometry}
+\geometry{
+    letterpaper,
+    margin=1.5in,
+    centering,
+    top=0.5in,
+    bottom=0.3in, % small so \fancyfoot is close to bottom
+    marginparwidth=0.7in,
+    headsep=0.7in,
+    footskip=1.0in,
+    includehead,
+    includefoot,
+}
+\renewcommand{\baselinestretch}{1.13}
+\setlength{\parskip}{0.5\baselineskip}
+\setlength{\parindent}{0pt}
+
+\usepackage{titlesec}
+\titleformat{\section}{\sffamily\LARGE\bfseries\center}{}{0em}{}{}
+
+\usepackage{amsmath,amssymb}
+\usepackage{tabularray}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{wasysym}
+\usepackage[colorlinks=true,
+            linkcolor=blue,
+            filecolor=magenta,
+            urlcolor=blue,
+            bookmarksopen=true]{hyperref}
+\usepackage[shortlabels]{enumitem}
+% The following contains data specific to the course and semester:
+\usepackage{fancyhdr} 
+\fancyhead[L]{\textsf{CS 61-M1}}
+\fancyhead[C]{\textbf{{\textsf{Discrete Math}}}}
+\fancyhead[R]{\textsf{Fall~2024}}
+\fancyfoot[L]{\textsf{\footnotesize\scriptsize{ }}}
+\fancyfoot[C]{}
+\fancyfoot[R]{\footnotesize\textsf{\copyright2024~Tufts~University}}
+
+
+% commands
+\NewDocumentCommand{\header}{ m O{Fall 2024}}{%
+    \section{#1 \\ \normalsize\normalfont#2 \bigskip\bigskip
+    }
+}
+\newcommand{\due}{\textbf{Due: }}
+\newcommand{\hf}{\hspace*{\fill}}
+\newcommand{\soln}[1]{ { % this extra brace contains the color command
+    \color{red!90!black}#1}
+}
+\newcommand{\Part}[1]{\noindent\textbf{#1. \ }}
+\newcommand{\thetextbook}{[Scheinerman, 3e]}
+\newcommand{\tsec}[1]{\S\textbf{#1:}} % my formatting for textbook section number
+
+
+\begin{document}
+\pagestyle{fancy}
+%\tableofcontents % Optional. You should get sidebar navigation links for your pdf reader even if you don't use this.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some comments}
+\textbf{\textcolor{red}{Please delete this section before you submit HW.}}
+
+It is \textcolor{red}{NOT} required that you use this document, but hopefully you find it useful.
+If you do use this file, put both \texttt{hw-01.tex} and \texttt{tex-shell.tex} in the same directory.
+This document \texttt{tex-shell.tex} contains 
+\begin{enumerate}
+    \item   the ``preamble'' (with all the formatting commands and macro definitions)
+            that goes \textit{before} the  \verb+\begin{document}+ 
+
+    \item   \verb+\begin{document}+
+
+    \item\label{mylabel}   \verb+\input{file}+ that inserts the contents of \texttt{file.tex} into this doc.   
+
+    \item   \verb+\end{document}+
+\end{enumerate}
+When you pdflatex (or lualatex), you will get a \texttt{tex-shell.pdf}, so you would probably have to rename it.
+Of course, next week just replace the \texttt{hw-01} with \texttt{hw-02} (I may or may not supply).
+
+\subsection*{Design consideration:} You can have either 
+\begin{enumerate}
+    \item   Stand-alone hw-docs, each with their own preamble. 
+
+            This gets rid of the \verb+\input{file}+ in step \ref{mylabel} above. 
+            This might be easiest. 
+
+    \item   A single global preamble. 
+
+            This is what I do since when I change formatting or add 
+            a macro definition the change is global across all my course docs.
+
+            This also affords the possibility of  a single big doc that contains all 
+            of your hw docs. 
+\end{enumerate}
+If you want one big doc that contains all of your hw docs, 
+along with a table of contents, then 
+\begin{enumerate}
+   \item    leave the  \verb+\input{hw-01}+
+   \item    uncomment the  \verb+\tableofcontents+
+
+            This is optional. You should get sidebar navigation links for your pdf reader even if you don't use this.
+   \item    uncomment the  \verb+\newpage\input{hw-02}+
+   \item    You will have to pdflatex (or lualatex) twice for it to build the toc (or sidebar nav links, or label refs in the doc).
+
+            The formatting is slightly different between pdflatex/lualatex for me, which I don't understand.
+            Bonus point to anyone who explains that to me. \smiley
+\end{enumerate}
+But \textbf{PLEASE} submit only \textbf{one} \textbf{\texttt{hw-xy.pdf}} at a time to gradescope.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% the actual HW content gets input here:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{hw-01}
+% Next week, just replace the hw-01 with hw-02 (which I may or may not supply).
+
+%\newpage
+%\input{hw-02}
+
+\end{document}
+
